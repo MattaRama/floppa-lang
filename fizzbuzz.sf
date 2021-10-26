@@ -1,0 +1,38 @@
+var i "0"
+var tmp1 ""
+var tmp2 ""
+
+loop:
+  op i + "1"
+  ifjmp end i == "101"
+
+  tmp1 ""
+  tmp2 ""
+  concat tmp1 i
+  concat tmp2 i
+
+  op tmp1 % "3"
+  op tmp2 % "5"
+
+  ifjmp fizz tmp1 == "0"
+  ifjmp buzz tmp2 == "0"
+
+  echo i
+
+  jmp loop
+
+fizz:
+  ifjmp fizzbuzz tmp2 == "0"
+  echo "Fizz"
+  jmp loop
+
+buzz:
+  echo "Buzz"
+  jmp loop
+
+fizzbuzz:
+  echo "FizzBuzz"
+  jmp loop
+
+end:
+  exit

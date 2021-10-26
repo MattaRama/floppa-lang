@@ -1,0 +1,4 @@
+const keywords = [
+  'echo',
+  'exit',
+];

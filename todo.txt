@@ -1,0 +1,11 @@
+- Add bitwise operators to op
+- Implement support for standard library
+- Improve fizzbuzz
+- Add comments (inline comments probably?)  
+- Set up git repo
+- Clean up code with new methods from src-BETA
+- Migrate 'string' id to 'literal' or 'data' or something
+
+standard library calls:
+    import (path: identifier/string)
+    call (label: identifier/string)
