@@ -1,8 +1,8 @@
 - Add bitwise operators to op
-- Implement support for standard library
+- Add import statements
+- Add support for standard library
 - Improve fizzbuzz
-- Add comments (inline comments probably?)  
-- Set up git repo
+- Add comments (inline comments probably?)
 - Clean up code with new methods from src-BETA
 - Migrate 'string' id to 'literal' or 'data' or something
 

@@ -1,0 +1,12 @@
+Label syntax: `label:`
+
+Keywords: 
+    - echo    (identifier, string)
+    - exit 
+    - jmp     (label: identifier)
+    - var     (name: identifier) (value: identifier, string)
+    - destroy (term: identifier)
+    - concat  (str1: identifier) (str2: identifier, string)
+    - ifjmp   (label: identifier, string) (term1: identifier, string) (operator: identifier) (term2: identifier, string)
+    - op      (term1: identifier, string) (operator: identifier) (term2: identifier, string)
+

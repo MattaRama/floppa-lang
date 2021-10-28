@@ -40,11 +40,12 @@ class Interpreter {
           i = pos;
         }
         else if (tokens[i]['value'] == 'var') {
-          if (tokens[++i]['id'] != 'identifier' || tokens[++i]['id'] != 'string') {
+          if (tokens[i + 1]['id'] != 'identifier' ||
+              !matchTokenField(tokens[i + 2], 'id', ['string', 'identifier'])) {
             error('Failed to declare variable: invalid parameter', -1);
           }
 
-          mem[tokens[i - 1]['value']] = tokens[i]['value'];
+          mem[tokens[i + 1]['value']] = getVal(tokens[i + 2]);
         }
         else if (tokens[i]['value'] == 'concat') {
           if (tokens.length <= i + 2)
@@ -125,32 +126,34 @@ class Interpreter {
               tokens[i + 2]['id'] == 'identifier' &&
               matchTokenField(tokens[i + 3], 'id', ['string', 'identifier'])) {
 
-            num num1 = num.parse(getVal(tokens[i + 1]));
+            //print('${tokens[i + 1]}, ${getVal(tokens[i + 1])}');
+            //print('${tokens[i + 3]}, ${getVal(tokens[i + 3])}');
+            num? num1 = num.tryParse(getVal(tokens[i + 1]));
             num num2 = num.parse(getVal(tokens[i + 3]));
             switch (tokens[i + 2]['value']) {
               case '+':
-                mem[tokens[i + 1]['value']] = (num1 + num2).toString();
+                mem[tokens[i + 1]['value']] = (num1! + num2).toString();
                 break;
               case '-':
-                mem[tokens[i + 1]['value']] = (num1 - num2).toString();
+                mem[tokens[i + 1]['value']] = (num1! - num2).toString();
                 break;
               case '*':
-                mem[tokens[i + 1]['value']] = (num1 * num2).toString();
+                mem[tokens[i + 1]['value']] = (num1! * num2).toString();
                 break;
               case '/':
-                mem[tokens[i + 1]['value']] = (num1 / num2).toString();
+                mem[tokens[i + 1]['value']] = (num1! / num2).toString();
                 break;
               case '%':
-                mem[tokens[i + 1]['value']] = (num1 % num2).toString();
+                mem[tokens[i + 1]['value']] = (num1! % num2).toString();
+                break;
+              case '=':
+                mem[tokens[i + 1]['value']] = num2.toString();
                 break;
               default:
                 error('Failed to op: invalid operator', -1);
             }
 
-            //mem[tokens[i + 1]['value']] =
-            //  (num.parse(getVal(tokens[i + 1])) +
-            //  ((tokens[i + 2]['value'] == '-' ? -1 : 1)
-            //  * num.parse(getVal(tokens[i + 3])))).toString();
+            i += 3;
           } else {
             error('Failed to op: invalid parameters', -1);
           }
@@ -159,14 +162,11 @@ class Interpreter {
           mem.remove(tokens[++i]['value']);
         }
       }
-      else if (tokens[i]['id'] == 'identifier') {
+      //else if (tokens[i]['id'] == 'identifier') {
         //mem[tokens[i - 1]['value']] = concatStrTokens(tokens, i);
-        if (tokens[++i]['id'] == 'string') {
-          mem[tokens[i - 1]['value']] = tokens[i]['value'];
-        } else if (tokens[++i]['id'] == 'identifier') {
-          mem[tokens[i - 1]['value']] = mem[tokens[i]['value']];
-        }
-      }
+        //print('${tokens[i]}, ${tokens[i + 1]}');
+        //mem[tokens[i]['value']] = tokens[i]['value'] = getVal(tokens[++i]);
+      //}
     }
   }
 

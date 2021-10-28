@@ -1,15 +1,11 @@
 var i "0"
-var tmp1 ""
-var tmp2 ""
 
 loop:
   op i + "1"
   ifjmp end i == "101"
 
-  tmp1 ""
-  tmp2 ""
-  concat tmp1 i
-  concat tmp2 i
+  var tmp1 i
+  var tmp2 i
 
   op tmp1 % "3"
   op tmp2 % "5"
@@ -35,4 +31,7 @@ fizzbuzz:
   jmp loop
 
 end:
+  destroy i
+  destroy tmp2
+  destroy tmp2
   exit
