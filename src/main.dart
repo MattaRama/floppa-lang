@@ -11,8 +11,8 @@ void main() {
 
   l.tokenizer();
 
-  print(l.tokens);
-  print('\n\n');
+  //print(l.tokens);
+  //print('\n\n');
 
   var inter = Interpreter();
   inter.run(l.tokens);

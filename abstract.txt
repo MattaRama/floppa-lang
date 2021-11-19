@@ -1,0 +1,6 @@
+while (condition) {}
+
+loop:
+    ifjmp 
+
+loop_exit:
